@@ -52,7 +52,7 @@ bot('editmessagetext',[
 file_put_contents("data/$chatid/one.txt","start");
 bot('editmessagetext',[
 'chat_id'=>$chatid,
-'text'=>"خوب ادرس گیت هاب خود را بفرستید\nتا در صورت وجود ادرس فایل مستقیم برای شما فرستاده شود...\n⛔توجه : حتما با http شروع شود و در اخر هم .git نداشته باشد⛔\n\nCreate By : @AvengerTm",
+'text'=>"خوب ادرس گیت هاب خود را بفرستید\nتا در صورت وجود ادرس فایل مستقیم برای شما فرستاده شود...\n⛔توجه : حتما با http شروع شود و در اخر هم .git نداشته باشد⛔\n\n",
 'message_id'=>$messageid,
 ]);
 
