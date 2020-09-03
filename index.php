@@ -30,7 +30,7 @@ if($text1=="/start"){
  file_put_contents("data/$fadmin/one.txt","null");
  bot('sendmessage',[
  'chat_id'=>$chat_id,
- 'text'=>"سلام خوش آمدید\n\nشما با این ربات میتوانید بصورت مستقیم فایل رو از گیتاب دانلود کنید\nبراش شروع دکمه شروع را بزنید \n\n,
+ 'text'=>"سلام خوش آمدید\n\nشما با این ربات میتوانید بصورت مستقیم فایل رو از گیتاب دانلود کنید\nبراش شروع دکمه شروع را بزنید \n\n",
 'parse_mode'=>"html",
 'reply_markup'=>json_encode([
 'inline_keyboard'=>[
