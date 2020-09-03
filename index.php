@@ -1,5 +1,5 @@
 <?php 
-ini_set('memory_limit', '102400M'); 
+ini_set('memory_limit', '1024M'); 
 define('API_KEY','1246606857:AAHpch56R2GUj_b6RJOYk2UB2MeP3chH9gE'); 
 $telegram = json_decode(file_get_contents('php://input'),true);
 $user_id = $telegram['message']['chat']['id'];
