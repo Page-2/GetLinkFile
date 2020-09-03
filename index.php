@@ -19,7 +19,7 @@ $url = $telegram['message']['text'];
 			if(remote_file_size($url) < 50){
 				$fileName = upload($url);	
 				send_file( $user_id , $fileName);
-				bot('sendMessage', ['chat_id'=> $user_id,'text'=> 'https://tooba.co/files/'.$fileName ]);
+				bot('sendMessage', ['chat_id'=> $user_id,'text'=> 'https://getlinkfile.herokuapp.com/files/'.$fileName ]);
 			}	
 				
 			
