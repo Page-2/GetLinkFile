@@ -70,7 +70,7 @@ bot('editmessagetext',[
 ]]),
 ]);
 }elseif($step=="start"){
-if(strpos($text1,"http://soft98.ir/")!==false || strpos($text1,"https://soft98.ir/")!==false ){
+if(strpos($text1,"http://dl2.soft98.ir/")!==false || strpos($text1,"https://dl2.soft98.ir/")!==false ){
 $one=str_replace("https://","",$text1);
 $two=str_replace("http://","",$one);
 $five="https://codeload.$two/zip/master";
