@@ -82,7 +82,7 @@ sendaction($chat_id, typing);
       $sizemb = getFilesize('file');
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-              //  'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
+                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
                   'text' =>$file,
                 
             ]);
