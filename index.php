@@ -65,7 +65,7 @@ $file = $video->file_id;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
     $s1=  convertToReadableSize($siz);
-     $s2= $text;
+     $s2= $LinkD;
       
    
     
