@@ -102,10 +102,12 @@ $video = $message->video;
 $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
+      
        $siz = $get->result->file_size;
+     $sizemb = round($siz /1024/1024,1);
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$siz",
+                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
             ]);
         }
  elseif(isset($message->document)){
