@@ -86,7 +86,7 @@ $file = $video->file_id;
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$siz",
-                  'text' =>$video,
+                 
                 
             ]);
         }
