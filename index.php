@@ -64,29 +64,35 @@ $file = $video->file_id;
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
-     $s1 =  getFileSize('$LinkD');
-      
+     $s1 =  getFilesize('$LinkD');
+     
+       $sizes = array("TB", "GB", "MB", "KB", "B");
+   
+    
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$LinkD \n $siz \n $s1" ,
+                'text' =>"$LinkD \n $siz \n $sizes" ,
                  
                 
             ]);
         }
  
-function getFileSize($file1, $precision = 2){
-    if (is_file($file1)){
-        if (!realpath($file1))
-            $file1 = $_SERVER["DOCUMENT_ROOT"] . $file1;
-       $fileSize = filesize($file1);
-       $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
-       $bytes = max($fileSize, 0); 
-       $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
-       $pow = min($pow, count($units) - 1); 
-       $bytes /= pow(1024, $pow);
-       return round($bytes, $precision) . ' ' . $units[$pow]; 
-    }
-    return false;
+function getFilesize($file, $digits = 2)
+{
+if (is_file($file)) {
+$filePath = $file;
+if (!realpath($filePath)) {
+$filePath = $_SERVER["DOCUMENT_ROOT"] . $filePath;
+}
+$fileSize = filesize($filePath);
+$sizes = array("TB", "GB", "MB", "KB", "B");
+$total = count($sizes);
+while ($total-- && $fileSize > 1024) {
+$fileSize /= 1024;
+}
+return round($fileSize, $digits) . " " . $sizes[$total];
+}
+return false;
 }
 ?>
