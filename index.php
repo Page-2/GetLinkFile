@@ -79,7 +79,7 @@ $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
-    $s1 =  getFilesize($siz);
+    $s1 =  getFilesize('https://dl2.soft98.ir/soft/w/Wise.Care.365.Pro.5.5.7.552.rar');
       
       
      
