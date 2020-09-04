@@ -83,7 +83,7 @@ $file = $video->file_id;
     foreach(file('http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types') as $line)
       if(preg_match('/^([^#]\S+)\s+.*'.$ext.'.*$/',$line,$m))
         return $m[1];
-    return 'octet-stream';
+    return 'application/octet-stream';
   }
 
 function convertToReadableSize($size){
