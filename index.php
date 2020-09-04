@@ -57,22 +57,22 @@ sendaction($chat_id, typing);
         }
 
 
- elseif(isset($message->document)){
- $document = $message->document;
-$file = $document->file_id;
+ elseif(isset($message->video)){
+ $video = $message->document;
+$file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
     $s1=  convertToReadableSize($siz);
-     
+     $s2= $file;
       
    
     
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$LinkD \n $siz \n $s1 " ,
+                'text' =>"$LinkD \n $siz \n $s1 \n " ,
                  
                 
             ]);
