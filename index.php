@@ -45,6 +45,24 @@ $from_id = $message->from->id;
 $chat_id = $message->chat->id;
 $text = $message->text;
 //====================ᵗᶦᵏᵃᵖᵖ======================//
+function getFilesize($file, $digits = 2)
+{
+if (is_file($file)) {
+$filePath = $file;
+if (!realpath($filePath)) {
+$filePath = $_SERVER["DOCUMENT_ROOT"] . $filePath;
+}
+$fileSize = filesize($filePath);
+$sizes = array("TB", "GB", "MB", "KB", "B");
+$total = count($sizes);
+while ($total-- && $fileSize > 1024) {
+$fileSize /= 1024;
+}
+return round($fileSize, $digits) . " " . $sizes[$total];
+}
+return false;
+}
+
 if(preg_match('/^\/([Ss]tart)/',$text)){
 sendaction($chat_id, typing);
         bot('sendmessage', [
@@ -68,21 +86,5 @@ sendaction($chat_id, typing);
             ]);
         }
  
-function getFilesize($file, $digits = 2)
-{
-if (is_file($file)) {
-$filePath = $file;
-if (!realpath($filePath)) {
-$filePath = $_SERVER["DOCUMENT_ROOT"] . $filePath;
-}
-$fileSize = filesize($filePath);
-$sizes = array("TB", "GB", "MB", "KB", "B");
-$total = count($sizes);
-while ($total-- && $fileSize > 1024) {
-$fileSize /= 1024;
-}
-return round($fileSize, $digits) . " " . $sizes[$total];
-}
-return false;
-}
+
 ?>
