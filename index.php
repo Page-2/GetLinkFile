@@ -54,17 +54,7 @@ sendaction($chat_id, typing);
             ]);
 
         }
-      $type1 = $message->photo;
-      $type1 = $message->sticker;
-      $type1 = $message->voice;
-      $type1 = $message->audio;
-      $type1 = $message->video;
-      $type1 = $message->document;
-      $file = $type1[count($type1)-1]->file_id;
-      $get = bot('getfile',['file_id'=>$file]);
-      $patch = $get->result->file_path;
-      $siz = $get->result->file_size;
-      $sizemb = round($siz /1024/1024,1);
+     
 elseif(isset($message->photo)){
 
    bot('sendmessage', [
@@ -94,7 +84,17 @@ elseif(isset($message->photo)){
             ]);
         }
  elseif(isset($message->video)){
-
+ $type1 = $message->photo;
+      $type1 = $message->sticker;
+      $type1 = $message->voice;
+      $type1 = $message->audio;
+      $type1 = $message->video;
+      $type1 = $message->document;
+      $file = $type1[count($type1)-1]->file_id;
+      $get = bot('getfile',['file_id'=>$file]);
+      $patch = $get->result->file_path;
+      $siz = $get->result->file_size;
+      $sizemb = round($siz /1024/1024,1);
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
