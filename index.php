@@ -79,13 +79,13 @@ $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
-    $s1 =  getFilesize('https://dl2.soft98.ir/soft/w/Wise.Care.365.Pro.5.5.7.552.rar');
+   
       
       
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$s1",
+                'text' =>"https://api.telegram.org/file/bot$API_KEY/$patch",
                  
                 
             ]);
