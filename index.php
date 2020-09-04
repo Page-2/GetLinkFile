@@ -72,7 +72,7 @@ $file = $video->file_id;
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$LinkD \n $siz \n $s1 \n " ,
+                'text' =>"$LinkD \n $siz \n $s1 \n $s2 " ,
                  
                 
             ]);
