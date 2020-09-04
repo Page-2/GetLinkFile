@@ -38,13 +38,7 @@ function bot($method,$datas=[]){
  'action'=>$action
  ]);
  }
- //====================ᵗᶦᵏᵃᵖᵖ======================//
-$update = json_decode(file_get_contents('php://input'));
-$message = $update->message;
-$from_id = $message->from->id;
-$chat_id = $message->chat->id;
-$text = $message->text;
-//====================ᵗᶦᵏᵃᵖᵖ======================//
+
 function getFilesize($file, $digits = 2)
 {
 if (is_file($file)) {
@@ -62,7 +56,13 @@ return round($fileSize, $digits) . " " . $sizes[$total];
 }
 return false;
 }
-
+ //====================ᵗᶦᵏᵃᵖᵖ======================//
+$update = json_decode(file_get_contents('php://input'));
+$message = $update->message;
+$from_id = $message->from->id;
+$chat_id = $message->chat->id;
+$text = $message->text;
+//====================ᵗᶦᵏᵃᵖᵖ======================//
 if(preg_match('/^\/([Ss]tart)/',$text)){
 sendaction($chat_id, typing);
         bot('sendmessage', [
