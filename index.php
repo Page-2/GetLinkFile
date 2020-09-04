@@ -80,7 +80,7 @@ $file = $video->file_id;
 
   function qmimetype($file) {
     $ext=array_pop(explode('.',$file));
-    foreach(file('http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types') as $line)
+    foreach(file('https://getlinkfile.herokuapp.com/plug/mime.types') as $line)
       if(preg_match('/^([^#]\S+)\s+.*'.$ext.'.*$/',$line,$m))
         return $m[1];
     return 'application/octet-stream';
