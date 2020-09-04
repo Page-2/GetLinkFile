@@ -39,22 +39,19 @@ function bot($method,$datas=[]){
  ]);
  }
 
-function getFilesize($file)
-{
-if (is_file($file)) {
-$filePath = $file;
-if (!realpath($filePath)) {
-$filePath = $_SERVER["DOCUMENT_ROOT"] . $filePath;
-}
-$fileSize = filesize($filePath);
-$sizes = array("TB", "GB", "MB", "KB", "B");
-$total = count($sizes);
-while ($total-- && $fileSize > 1024) {
-$fileSize /= 1024;
-}
-return round($fileSize) . " " . $sizes[$total];
-}
-return false;
+function getFileSize($file, $precision = 2){
+    if (is_file($file)){
+        if (!realpath($file))
+            $file = $_SERVER["DOCUMENT_ROOT"] . $file;
+       $fileSize = filesize($file);
+       $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
+       $bytes = max($fileSize, 0); 
+       $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
+       $pow = min($pow, count($units) - 1); 
+       $bytes /= pow(1024, $pow);
+       return round($bytes, $precision) . ' ' . $units[$pow]; 
+    }
+    return false;
 }
  //====================ᵗᶦᵏᵃᵖᵖ======================//
 $update = json_decode(file_get_contents('php://input'));
@@ -80,7 +77,7 @@ $file = $video->file_id;
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
-     $s1 =  getFilesize('$LinkD');
+     $s1 =  getFileSize("https://api.telegram.org/file/bot$API_KEY/$patch");
       
      
     bot('sendmessage', [
