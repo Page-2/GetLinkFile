@@ -77,12 +77,12 @@ $file = $video->file_id;
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
-     $s1 =  getFileSize("$patch");
+     
       
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$s1" ,
+                'text' =>"$patch" ,
                  
                 
             ]);
