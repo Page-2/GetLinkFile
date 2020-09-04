@@ -86,8 +86,8 @@ elseif(isset($message->photo)){
  elseif(isset($message->video)){
  
       $type1 = $message->video;
+      $file = $type1->file_id;
       
-      $file = $type1[count($type1)-1]->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
       $siz = $get->result->file_size;
