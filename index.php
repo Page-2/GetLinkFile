@@ -82,7 +82,7 @@ $file = $video->file_id;
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$get" ,
+                'text' =>"$LinkD" /n "$siz" ,
                  
                 
             ]);
