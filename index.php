@@ -63,8 +63,8 @@ $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
-     $LinkD = 'https://api.telegram.org/file/bot$API_KEY/$patch';
-     
+     $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
+    $s1=  convertToReadableSize($siz);
      
       
    
@@ -72,12 +72,17 @@ $file = $video->file_id;
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$LinkD \n $siz \n  " ,
+                'text' =>"$LinkD \n $siz \n $s1 " ,
                  
                 
             ]);
         }
  
 
-
+function convertToReadableSize($size){
+  $base = log($size) / log(1024);
+  $suffix = array("", "KB", "MB", "GB", "TB");
+  $f_base = floor($base);
+  return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
+}
 ?>
