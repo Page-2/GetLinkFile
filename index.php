@@ -64,7 +64,7 @@ $file = $video->file_id;
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
-     $s1 =  getFileSize($LinkD);
+     $s1 =  getFileSize('$LinkD');
       
      
     bot('sendmessage', [
@@ -75,11 +75,11 @@ $file = $video->file_id;
             ]);
         }
  
-function getFileSize($file, $precision = 2){
-    if (is_file($file)){
-        if (!realpath($file))
-            $file = $_SERVER["DOCUMENT_ROOT"] . $file;
-       $fileSize = filesize($file);
+function getFileSize($file1, $precision = 2){
+    if (is_file($file1)){
+        if (!realpath($file1))
+            $file1 = $_SERVER["DOCUMENT_ROOT"] . $file1;
+       $fileSize = filesize($file1);
        $units = array('B', 'KB', 'MB', 'GB', 'TB'); 
        $bytes = max($fileSize, 0); 
        $pow = floor(($bytes ? log($bytes) : 0) / log(1024)); 
