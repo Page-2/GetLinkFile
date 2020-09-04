@@ -52,6 +52,8 @@ sendaction($chat_id, typing);
                 'chat_id' => $chat_id,
                 'text' =>"به ربات تبدیل فایل به لینک خوش امدید",
             ]);
+
+        }
       $type1 = $message->photo;
       $type1 = $message->sticker;
       $type1 = $message->voice;
@@ -63,8 +65,6 @@ sendaction($chat_id, typing);
       $patch = $get->result->file_path;
       $siz = $get->result->file_size;
       $sizemb = round($siz /1024/1024,1);
-        }
-
 elseif(isset($message->photo)){
 
    bot('sendmessage', [
