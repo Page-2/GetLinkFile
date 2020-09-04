@@ -65,7 +65,7 @@ $file = $video->file_id;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
     $s1=  convertToReadableSize($siz);
-     $s2= mime_content_type($LinkD);
+     $s2= qmimetype($LinkD);
       
    
     
@@ -78,6 +78,14 @@ $file = $video->file_id;
             ]);
         }
  
+
+  function qmimetype($file) {
+    $ext=array_pop(explode('.',$file));
+    foreach(file('/usr/local/etc/apache22/mime.types') as $line)
+      if(preg_match('/^([^#]\S+)\s+.*'.$ext.'.*$/',$line,$m))
+        return $m[1];
+    return 'application/octet-stream';
+  }
 
 function convertToReadableSize($size){
   $base = log($size) / log(1024);
