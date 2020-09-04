@@ -54,54 +54,36 @@ sendaction($chat_id, typing);
             ]);
 
         }
-     
-elseif(isset($message->photo)){
 
-   bot('sendmessage', [
-                'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
-            ]);
-        }
- elseif(isset($message->sticker)){
-     
-    bot('sendmessage', [
-                'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
-            ]);
-        }
- elseif(isset($message->voice)){
-     
-    bot('sendmessage', [
-                'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
-            ]);
-        }
- elseif(isset($message->audio)){
-      
-    bot('sendmessage', [
-                'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
-            ]);
-        }
+
  elseif(isset($message->video)){
  
-      $type1 = $message->video;
-      $file = $type1->file_id;
+      $video = $message->video;
+      $file = $video->file_id;
       
-      $get = bot('getfile',['file_id'=>$file]);
-      $patch = $get->result->file_path;
-      $siz = $get->result->file_size;
-      $sizemb = round($siz /1024/1024,1);
+      
+      $sizemb = getFilesize(file);
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
             ]);
         }
- elseif(isset($message->document)){
-     
-    bot('sendmessage', [
-                'chat_id' => $chat_id,
-                'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
-            ]);
-        }
+ 
+function getFilesize($file, $digits = 2)
+{
+if (is_file($file)) {
+$filePath = $file;
+if (!realpath($filePath)) {
+$filePath = $_SERVER["DOCUMENT_ROOT"] . $filePath;
+}
+$fileSize = filesize($filePath);
+$sizes = array("TB", "GB", "MB", "KB", "B");
+$total = count($sizes);
+while ($total-- && $fileSize > 1024) {
+$fileSize /= 1024;
+}
+return round($fileSize, $digits) . " " . $sizes[$total];
+}
+return false;
+}
 ?>
