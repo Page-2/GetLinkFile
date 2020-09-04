@@ -70,9 +70,9 @@ sendaction($chat_id, typing);
         }
 
 
- elseif(isset($message->video)){
- $video = $message->video;
-$file = $video->file_id;
+ elseif(isset($message->files)){
+ $files = $message->files;
+$file = $files->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
