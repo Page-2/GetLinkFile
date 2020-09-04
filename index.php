@@ -58,7 +58,7 @@ sendaction($chat_id, typing);
 
 
  elseif(isset($message->video)){
- $video = $message->document;
+ $video = $message->video;
 $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
