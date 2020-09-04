@@ -39,7 +39,7 @@ function bot($method,$datas=[]){
  ]);
  }
 
-function getFilesize($file, $digits = 2)
+function getFilesize($file)
 {
 if (is_file($file)) {
 $filePath = $file;
@@ -52,7 +52,7 @@ $total = count($sizes);
 while ($total-- && $fileSize > 1024) {
 $fileSize /= 1024;
 }
-return round($fileSize, $digits) . " " . $sizes[$total];
+return round($fileSize) . " " . $sizes[$total];
 }
 return false;
 }
@@ -80,12 +80,12 @@ $file = $video->file_id;
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
-      
+     $s1 =  getFilesize($LinkD);
       
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
-                'text' =>"$LinkD",
+                'text' =>"$s1" ,
                  
                 
             ]);
