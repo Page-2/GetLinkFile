@@ -1,5 +1,5 @@
 <?php 
-define('APACHE_MIME_TYPES_URL','http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
+
 ob_start();
 
 $API_KEY = '1246606857:AAHpch56R2GUj_b6RJOYk2UB2MeP3chH9gE';
@@ -67,19 +67,17 @@ $file = $video->file_id;
     $s1=  convertToReadableSize($siz);
      $s2= generateUpToDateMimeArray($LinkD);
       
-   
-    
+
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"$LinkD \n $siz \n $s1 \n $s2 " ,
-                 
-                
+                                
             ]);
         }
  
 
-
+define('APACHE_MIME_TYPES_URL','http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
 function generateUpToDateMimeArray($url){
     $s=array();
     foreach(@explode("\n",@file_get_contents($url))as $x)
