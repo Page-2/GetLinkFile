@@ -79,7 +79,7 @@ $file = $video->file_id;
       $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
        $siz = $get->result->file_size;
-     $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch"
+     $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
       
       
      
