@@ -1,5 +1,5 @@
 <?php 
-
+define('APACHE_MIME_TYPES_URL','http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types');
 ob_start();
 
 $API_KEY = '1246606857:AAHpch56R2GUj_b6RJOYk2UB2MeP3chH9gE';
@@ -65,7 +65,7 @@ $file = $video->file_id;
        $siz = $get->result->file_size;
      $LinkD = "https://api.telegram.org/file/bot$API_KEY/$patch";
     $s1=  convertToReadableSize($siz);
-     $s2= qmimetype($LinkD);
+     $s2= generateUpToDateMimeArray($LinkD);
       
    
     
@@ -79,13 +79,15 @@ $file = $video->file_id;
         }
  
 
-  function qmimetype($file) {
-    $ext=array_pop(explode('.',$file));
-    foreach(file('/usr/local/etc/apache22/mime.types') as $line)
-      if(preg_match('/^([^#]\S+)\s+.*'.$ext.'.*$/',$line,$m))
-        return $m[1];
-    return 'application/octet-stream';
-  }
+
+function generateUpToDateMimeArray($url){
+    $s=array();
+    foreach(@explode("\n",@file_get_contents($url))as $x)
+        if(isset($x[0])&&$x[0]!=='#'&&preg_match_all('#([^\s]+)#',$x,$out)&&isset($out[1])&&($c=count($out[1]))>1)
+            for($i=1;$i<$c;$i++)
+                $s[]='&nbsp;&nbsp;&nbsp;\''.$out[1][$i].'\' => \''.$out[1][0].'\'';
+    return @sort($s)?'$mime_types = array(<br />'.implode($s,',<br />').'<br />);':false;
+}
 
 function convertToReadableSize($size){
   $base = log($size) / log(1024);
