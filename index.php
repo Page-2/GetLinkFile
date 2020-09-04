@@ -52,34 +52,34 @@ sendaction($chat_id, typing);
                 'chat_id' => $chat_id,
                 'text' =>"به ربات تبدیل فایل به لینک خوش امدید",
             ]);
-    
-     $get = bot('getfile',['file_id'=>$file]);
+      $type1 = $message->photo;
+      $type1 = $message->sticker;
+      $type1 = $message->voice;
+      $type1 = $message->audio;
+      $type1 = $message->video;
+      $type1 = $message->document;
+      $file = $type1[count($type1)-1]->file_id;
+      $get = bot('getfile',['file_id'=>$file]);
       $patch = $get->result->file_path;
       $siz = $get->result->file_size;
       $sizemb = round($siz /1024/1024,1);
         }
 
 elseif(isset($message->photo)){
-$photo = $message->photo;
-$file = $photo[count($photo)-1]->file_id;
-     
+
    bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
             ]);
         }
  elseif(isset($message->sticker)){
-$sticker = $message->sticker;
-$file = $sticker->file_id;
-      
+     
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
             ]);
         }
  elseif(isset($message->voice)){
-$voice = $message->voice;
-$file = $voice->file_id;
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
@@ -87,8 +87,6 @@ $file = $voice->file_id;
             ]);
         }
  elseif(isset($message->audio)){
-$audio = $message->audio;
-$file = $audio->file_id;
       
     bot('sendmessage', [
                 'chat_id' => $chat_id,
@@ -96,17 +94,13 @@ $file = $audio->file_id;
             ]);
         }
  elseif(isset($message->video)){
-$video = $message->video;
-$file = $video->file_id;
-     
+
     bot('sendmessage', [
                 'chat_id' => $chat_id,
                 'text' =>"https://storage.pwrtelegram.xyz/$patch\n حجم فایلتون :$sizemb",
             ]);
         }
  elseif(isset($message->document)){
-$document = $message->document;
-$file = $document->file_id;
      
     bot('sendmessage', [
                 'chat_id' => $chat_id,
